@@ -1,18 +1,25 @@
 import React from "react";
 import heroImage from "../../assets/about/aboutimg1.png";
+import Hero4 from "../sections/hero4";
+import Hero5 from "../sections/hero5";
 ///about image
 
 import Image2 from "../../assets/about/aboutimg2.png";
 import Image3 from "../../assets/about/aboutimg3.png";
 import Image4 from "../../assets/about/aboutimg4.png";
 import Image5 from "../../assets/about/aboutimg5.png";
+import Image6 from "../../assets/about/aboutimg6.png";
+
+import teethIcon from "../../assets/teeth 1.png";
+import smileIcon from "../../assets/smile 1.png";
+import implantIcon from "../../assets/implant 1.png";
 
 const About = () => {
   return (
     <>
       {/* Title - Responsive font sizes */}
       <h1 className="mt-[90px] text-[42px] sm:text-[48px] md:text-[54px] lg:text-[62px] font-semibold text-[#011632] leading-[120%] tracking-[-0.02em] text-center capitalize">
-        About
+        About Us
       </h1>
 
       <section className="py-16 px-4 bg-white">
@@ -60,11 +67,11 @@ const About = () => {
 
             {/* Right Image */}
             <div className="flex justify-center lg:justify-end">
-              <div className="w-full max-w-[453px] h-[603px] rounded-[10px] overflow-hidden bg-[#D9D9D9]">
+              <div className="w-full max-w-[453px] h-[400px] sm:h-[500px] lg:h-[560px] rounded-[10px] bg-[#D9D9D9] overflow-hidden">
                 <img
                   src={heroImage}
                   alt="Dentist with patient"
-                  className="w-[350px] h-[350px] object-cover"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
@@ -92,7 +99,7 @@ const About = () => {
           {/* Specialists Cards */}
           <div className="space-y-8">
             {/* Doctor 1 */}
-            <div className="flex flex-col lg:flex-row w-full max-w-[1064px] mx-auto rounded-[10px] overflow-hidden bg-white ">
+            <div className="flex flex-col lg:flex-row w-full max-w-[1064px] mx-auto rounded-[10px] h-[350px] overflow-hidden bg-white ">
               <img
                 src={Image2}
                 alt="Dr. Brent"
@@ -123,7 +130,7 @@ const About = () => {
             </div>
 
             {/* Doctor 2 */}
-            <div className="flex flex-col lg:flex-row w-full max-w-[1064px] mx-auto rounded-[10px] overflow-hidden bg-white">
+            <div className="flex flex-col lg:flex-row w-full max-w-[1064px] h-[350px]  mx-auto rounded-[10px] overflow-hidden bg-white">
               <img
                 src={Image3}
                 alt="Dr. Sarah"
@@ -153,7 +160,7 @@ const About = () => {
             </div>
 
             {/* Doctor 3 */}
-            <div className="flex flex-col lg:flex-row w-full max-w-[1064px] mx-auto rounded-[10px] overflow-hidden bg-white ">
+            <div className="flex flex-col lg:flex-row w-full max-w-[1064px] h-[350px] mx-auto rounded-[10px] overflow-hidden bg-white ">
               <img
                 src={Image4}
                 alt="Dr. Michael"
@@ -183,10 +190,10 @@ const About = () => {
             </div>
 
             {/* Doctor 4 */}
-            <div className="flex flex-col lg:flex-row w-full max-w-[1064px] mx-auto rounded-[10px] overflow-hidden bg-white ">
+            <div className="flex flex-col lg:flex-row w-full max-w-[1064px] mx-auto rounded-[10px]h-[350px]overflow-hidden bg-white ">
               <img
-                src={Image5}
-                alt="Dr. Jennifer"
+                src={Image4}
+                alt="Dr. Michael"
                 className="w-full lg:w-[305px] h-[300px] lg:h-[350px] object-cover"
               />
               <div className="p-6 lg:p-8 lg:pl-8 flex flex-col justify-center">
@@ -213,6 +220,130 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      {/* Latest Technology Section */}
+      <section className="py-8 sm:py-12 lg:py-16 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+            <h2 className="text-[28px] sm:text-[36px] lg:text-[42px] font-semibold leading-[125%] tracking-normal text-[#011632] capitalize mb-4 sm:mb-6">
+              Latest Technology
+            </h2>
+            <p className="text-[16px] sm:text-[17px] lg:text-[18px] font-normal leading-[155%] tracking-[0.015em] text-[#3C4959] max-w-[592px] mx-auto px-4">
+              Thanks to major technological advancements, dentistry allows
+              treating the most complex cases with less time and more
+              efficiency.
+            </p>
+          </div>
+
+          {/* Content Grid */}
+          <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 items-start max-w-[1270px] mx-auto">
+            {/* Left - Image */}
+            <div className="w-full lg:w-[522px] h-[250px] sm:h-[350px] lg:h-[393px]">
+              <img
+                src={Image6}
+                alt="Latest Technology in Dentistry"
+                className="w-full h-full object-cover rounded-[10px]"
+              />
+            </div>
+
+            {/* Right - Content */}
+            <div className="w-full lg:w-[728px]">
+              <h3 className="text-[20px] sm:text-[22px] lg:text-[24px] font-semibold leading-[120%] tracking-normal capitalize text-[#011632] mb-4 sm:mb-6">
+                The Future of Dentistry is Digital:
+              </h3>
+              <div className="space-y-3 sm:space-y-4">
+                <p className="text-[16px] sm:text-[17px] lg:text-[18px] font-normal leading-[155%] tracking-[0.015em] text-[#3C4959]">
+                  Dentists today already utilize software to capture insights in
+                  clinical decision-making. These practices will continue to
+                  develop to integrate AI algorithms that enable clinicians to
+                  find the best modalities for their patients.
+                </p>
+                <p className="text-[16px] sm:text-[17px] lg:text-[18px] font-normal leading-[155%] tracking-[0.015em] text-[#3C4959]">
+                  In the 21st century, digital radiographs and 3D imaging have
+                  become the standard of dental care. Using an intraoral scanner
+                  with digitized data for 3D dental impressions (vs polyvinyl
+                  siloxane and rubber base impressions) for a dental crown is
+                  now commonplace.
+                </p>
+                <p className="text-[16px] sm:text-[17px] lg:text-[18px] font-normal leading-[155%] tracking-[0.015em] text-[#3C4959]">
+                  Artificial intelligence is laying the groundwork for the
+                  future of the dental industry. Dental robots can now perform
+                  functions such as filling cavities and cleaning or extracting
+                  teeth.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="w-full max-w-[1280px] mx-auto mt-8 sm:mt-12 lg:mt-16 bg-[#011632] rounded-2xl p-6 sm:p-8 md:p-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[
+            {
+              title: "Root Canal Treatment",
+              icon: teethIcon,
+              desc: "Root canal treatment (endodontics) is a dental procedure used to treat infection at the centre of a tooth.",
+            },
+            {
+              title: "Cosmetic Dentist",
+              icon: smileIcon,
+              desc: "Cosmetic dentistry focuses on improving the appearance of your smile.",
+            },
+            {
+              title: "Dental Implants",
+              icon: implantIcon,
+              desc: "A dental implant is an artificial tooth root placed into your jaw to hold a prosthetic tooth or bridge.",
+            },
+          ].map((service) => (
+            <div
+              key={service.title}
+              className="bg-white rounded-lg p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow text-center"
+            >
+              <div className="flex justify-center mb-4 bg-sky-400 w-20 h-20 rounded-full items-center mx-auto">
+                <img
+                  src={service.icon}
+                  alt={service.title}
+                  className="w-12 h-12 object-contain"
+                />
+              </div>
+              <h3 className="font-semibold text-slate-900 text-lg">
+                {service.title}
+              </h3>
+              <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                {service.desc}
+              </p>
+
+              <div className="flex items-center justify-center gap-2">
+                <a
+                  href="#"
+                  className="cursor-pointer font-['General_Sans'] font-medium text-base leading-[155%] tracking-[0.015em] underline text-sky-600 hover:text-sky-700"
+                >
+                  Learn More
+                </a>
+
+                <svg
+                  className="w-5 h-5 text-sky-600 cursor-pointer hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <Hero4 />
+      <Hero5 />
     </>
   );
 };

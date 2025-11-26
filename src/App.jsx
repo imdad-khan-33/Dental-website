@@ -7,6 +7,8 @@ import Services from "./components/pages/Services.jsx";
 import Blogs from "./components/pages/Blogs.jsx";
 import About from "./components/pages/About.jsx";
 import Contact from "./components/pages/Contact.jsx";
+import Login from "./components/pages/Login.jsx";
+import SignUp from "./components/pages/SignUp.jsx";
 
 export default function App() {
   return (
@@ -18,6 +20,8 @@ export default function App() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
       <Footer />
     </Router>
