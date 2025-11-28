@@ -13,11 +13,10 @@ const SignUp = () => {
           <img
             src={signupImage}
             alt="Dental Professional"
-            className="w-full h-full object-cover rounded-tr-[10px]"
+            className="w-full h-full rounded-[10px]"
           />
-
           {/* Quote Overlay */}
-          <div className="absolute bottom-8 left-8 right-8 text-white">
+          {/* <div className="absolute bottom-8 left-8 right-8 text-white">
             <blockquote className="text-[20px] sm:text-[24px] font-medium leading-[140%] mb-4">
               "Effort is like toothpaste; you can usually squeeze out just a
               little bit more."
@@ -30,11 +29,12 @@ const SignUp = () => {
             </p>
 
             {/* Navigation Dots */}
-            <div className="flex gap-2 mt-6">
+          {/* <div className="flex gap-2 mt-6">
               <button className="w-8 h-8 rounded-full bg-white/30 hover:bg-white/50 transition"></button>
               <button className="w-8 h-8 rounded-full bg-white hover:bg-white/80 transition"></button>
             </div>
-          </div>
+          </div> *
+          */}
         </div>
       </div>
 
@@ -43,7 +43,7 @@ const SignUp = () => {
         <div className="w-full max-w-[416px]">
           {/* Header */}
           <div className="mb-6">
-            <h1 className="text-[28px] sm:text-[32px] lg:text-[36px] font-bold text-[#011632] mb-2">
+            <h1 className="text-[28px] sm:text-[32px] lg:text-[36px] font-bold text-[#011632] mb-2 color-[#000000]">
               Create An Account
             </h1>
             <p className="text-[14px] sm:text-[16px] text-[#3C4959]">

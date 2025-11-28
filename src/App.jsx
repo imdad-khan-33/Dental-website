@@ -9,10 +9,12 @@ import About from "./components/pages/About.jsx";
 import Contact from "./components/pages/Contact.jsx";
 import Login from "./components/pages/Login.jsx";
 import SignUp from "./components/pages/SignUp.jsx";
+import ScrollToTop from "./components/common/ScrollToTop.jsx";
 
 export default function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
