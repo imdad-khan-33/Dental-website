@@ -1,13 +1,13 @@
 import React from "react";
 import heroImage from "../../assets/about/aboutimg1.png";
 import Hero4 from "../sections/hero4";
-import Hero5 from "../sections/hero5";
+import Hero5 from "../sections/Hero5";
 ///about image
 
 import Image2 from "../../assets/about/aboutimg2.png";
 import Image3 from "../../assets/about/aboutimg3.png";
 import Image4 from "../../assets/about/aboutimg4.png";
-import Image5 from "../../assets/about/aboutimg5.png";
+//import Image5 from "../../assets/about/aboutimg5.png";
 import Image6 from "../../assets/about/aboutimg6.png";
 
 import teethIcon from "../../assets/teeth 1.png";
