@@ -16,56 +16,50 @@ export default function Header() {
   ];
 
   return (
-    <header
-      className={`${
-        isOpen ? "bg-white" : "bg-[#E6F6FE]"
-      } fixed inset-x-0 top-0 z-50 shadow-sm transition-colors duration-300`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          {/* ---------- LOGO ---------- */}
-          <Link to="/" className="flex-shrink-0">
-            <img src={logo} alt="Uifry logo" className="h-10 w-auto sm:h-12" />
-          </Link>
+    <header className="fixed inset-x-0 top-0 z-50 flex justify-center py-4">
+      <div className="w-[1280px] h-[80px] bg-[#E6F6FE] rounded-[10px] shadow-sm px-8 flex items-center justify-between">
+        {/* ---------- LOGO ---------- */}
+        <Link to="/" className="flex-shrink-0">
+          <img src={logo} alt="Uifry logo" className="h-10 w-auto sm:h-12" />
+        </Link>
 
-          {/* ---------- DESKTOP NAV (centered) ---------- */}
-          <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center space-x-6 lg:space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className="text-base lg:text-lg font-medium text-gray-700 hover:text-[#1376F8] transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav>
-
-          {/* ---------- DESKTOP CTA ---------- */}
-          <div className="hidden md:flex items-center gap-3 lg:gap-4">
+        {/* ---------- DESKTOP NAV (centered) ---------- */}
+        <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center space-x-6 lg:space-x-8">
+          {navItems.map((item) => (
             <Link
-              to="/login"
+              key={item.name}
+              to={item.path}
               className="text-base lg:text-lg font-medium text-gray-700 hover:text-[#1376F8] transition-colors"
             >
-              Login
+              {item.name}
             </Link>
-            <Link
-              to="/signup"
-              className="bg-[#1376F8] text-white px-5 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors"
-            >
-              Sign up
-            </Link>
-          </div>
+          ))}
+        </nav>
 
-          {/* ---------- MOBILE MENU TOGGLE ---------- */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-gray-700 hover:text-[#1376F8] transition-colors z-50"
-            aria-label="Toggle menu"
+        {/* ---------- DESKTOP CTA ---------- */}
+        <div className="hidden md:flex items-center gap-3 lg:gap-4">
+          <Link
+            to="/login"
+            className="text-base lg:text-lg font-medium text-gray-700 hover:text-[#1376F8] transition-colors"
           >
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
+            Login
+          </Link>
+          <Link
+            to="/signup"
+            className="bg-[#1376F8] text-white px-5 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+          >
+            Sign up
+          </Link>
         </div>
+
+        {/* ---------- MOBILE MENU TOGGLE ---------- */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden p-2 text-gray-700 hover:text-[#1376F8] transition-colors z-50"
+          aria-label="Toggle menu"
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
 
       {/* ---------- MOBILE DRAWER ---------- */}
@@ -78,7 +72,7 @@ export default function Header() {
           />
 
           {/* panel */}
-          <div className="fixed left-0 top-16 w-full bg-white shadow-xl p-6 flex flex-col animate-slide-down">
+          <div className="fixed left-0 top-[120px] w-full bg-white shadow-xl p-6 flex flex-col animate-slide-down">
             <nav className="flex flex-col space-y-6">
               {navItems.map((item) => (
                 <Link

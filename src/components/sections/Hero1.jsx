@@ -4,8 +4,8 @@ import smileIcon from "../../assets/smile 1.png";
 import implantIcon from "../../assets/implant 1.png";
 const Hero1 = () => {
   return (
-    <div className="mt-16 bg-sky-50 rounded-2xl p-4 sm:p-6 md:p-8">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="-mt-8 bg-sky-50 rounded-2xl p-4 sm:p-6 md:p-8 w-[1280px] h-[400px] mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 h-full">
         {[
           {
             title: "Root Canal Treatment",

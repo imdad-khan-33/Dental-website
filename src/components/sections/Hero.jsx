@@ -9,8 +9,8 @@ import oldman from "../../assets/oldman.png";
 
 const Hero = () => {
   return (
-    <section className="bg-white w-full min-h-screen pt-16 ">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-20">
+    <section className="bg-white w-full min-h-screen pt-32 ">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8 lg:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900">
