@@ -72,13 +72,13 @@ const Services = () => {
   return (
     <>
       {/* Services Title - FIXED RESPONSIVE */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 text-center">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 text-center mt-[60px]">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl  ">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mt-8 sm:mt-0">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mt-8 sm:mt-0 fontstyle-semibold">
               Services
             </h1>
-            <p className="text-[#3C4959] mt-6 sm:mt-8 max-w-3xl mx-auto text-sm sm:text-base lg:text-lg">
+            <p className="text-[#3C4959] mt-6 sm:mt-8 max-w-3xl  mx-auto text-sm sm:text-base lg:text-lg w-[526px]">
               We use only the best quality materials on the market in order to
               provide the best products to our patients.
             </p>
@@ -87,15 +87,15 @@ const Services = () => {
       </section>
 
       {/* Services Grid Section - RESPONSIVE */}
-      <section className="py-8 sm:py-12 md:py-16 lg:py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <section className="py-8 sm:py-12 md:py-16 lg:py-0">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl ">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
             {services.map((service, index) => (
               <div
                 key={index}
                 className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-sm hover:shadow-lg transition-all duration-300 text-center border border-gray-100 hover:border-gray-200"
               >
-                <div className="flex justify-center mb-4 sm:mb-6 bg-sky-400 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full items-center mx-auto">
+                <div className="flex justify-center mb-4 sm:mb-6 bg-[#25B4F8] w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full items-center mx-auto">
                   <img
                     src={service.icon}
                     alt={service.title}
@@ -136,7 +136,7 @@ const Services = () => {
       </section>
 
       {/* Leave Your Worries Section - RESPONSIVE */}
-      <section className="bg-[#011632] py-12 sm:py-16 md:py-20 lg:py-24">
+      <section className="bg-[#011632] py-12 sm:py-16 md:py-20 lg:py-24 ">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             <div className="text-white order-2 lg:order-1">
