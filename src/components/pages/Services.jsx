@@ -4,12 +4,24 @@ import smileIcon from "../../assets/smile 1.png";
 import implantIcon from "../../assets/implant 1.png";
 import Hero2 from "../sections/Hero2.jsx";
 import Hero6 from "../sections/Hero6.jsx";
-
 import Hero5 from "../sections/Hero5.jsx";
 import Hero11 from "../sections/Hero11.jsx";
+import { appointmentAPI } from "../../services/api"; // ✅ Import API
 
 const Services = () => {
   const [openFAQ, setOpenFAQ] = useState(null);
+
+  // ✅ Form State
+  const [formData, setFormData] = useState({
+    fullName: "",
+    phoneNumber: "",
+    emailAddress: "",
+  });
+
+  // ✅ Loading aur Message State
+  const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const services = [
     {
@@ -65,6 +77,65 @@ const Services = () => {
     },
   ];
 
+  // ✅ Form Input Change Handler
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    // Clear messages when user starts typing
+    setErrorMessage("");
+  };
+
+  // ✅ Form Submit Handler
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setSuccessMessage("");
+    setErrorMessage("");
+
+    try {
+      // Validation
+      if (
+        !formData.fullName ||
+        !formData.phoneNumber ||
+        !formData.emailAddress
+      ) {
+        setErrorMessage("Please fill in all fields");
+        setLoading(false);
+        return;
+      }
+
+      // API Call
+      const response = await appointmentAPI.createAppointment(formData);
+
+      // Success
+      setSuccessMessage("Appointment request submitted successfully!");
+      setFormData({
+        fullName: "",
+        phoneNumber: "",
+        emailAddress: "",
+      });
+
+      // Auto clear success message after 3 seconds
+      setTimeout(() => {
+        setSuccessMessage("");
+      }, 3000);
+
+      console.log("Success:", response.data);
+    } catch (error) {
+      // Error Handling
+      const errorMsg =
+        error.response?.data?.message ||
+        "Error submitting appointment. Please try again.";
+      setErrorMessage(errorMsg);
+      console.error("Error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const toggleFAQ = (id) => {
     setOpenFAQ(openFAQ === id ? null : id);
   };
@@ -72,13 +143,13 @@ const Services = () => {
   return (
     <>
       {/* Services Title - FIXED RESPONSIVE */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 text-center mt-[60px]">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl  ">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mt-8 sm:mt-0 fontstyle-semibold">
+      <section className="w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-24 text-center mt-16 sm:mt-20 md:mt-24 lg:mt-28">
+        <div className="mx-auto max-w-7xl w-full">
+          <div className="max-w-3xl mx-auto px-4 sm:px-0">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-4 sm:mb-6">
               Services
             </h1>
-            <p className="text-[#3C4959] mt-6 sm:mt-8 max-w-3xl  mx-auto text-sm sm:text-base lg:text-lg w-[526px]">
+            <p className="text-sm sm:text-base md:text-lg text-[#3C4959] leading-relaxed mx-auto">
               We use only the best quality materials on the market in order to
               provide the best products to our patients.
             </p>
@@ -168,32 +239,72 @@ const Services = () => {
               </button>
             </div>
 
+            {/* ✅ REQUEST APPOINTMENT FORM - INTEGRATED */}
             <div className="flex justify-center lg:justify-end order-1 lg:order-2">
               <div className="bg-white p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl shadow-xl w-full max-w-sm sm:max-w-md">
                 <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#011632] mb-6 sm:mb-8">
                   Request Appointment
                 </h3>
-                <form className="space-y-4 sm:space-y-5">
+
+                {/* ✅ Success Message */}
+                {successMessage && (
+                  <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <p className="text-green-700 text-sm">{successMessage}</p>
+                  </div>
+                )}
+
+                {/* ✅ Error Message */}
+                {errorMessage && (
+                  <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-red-700 text-sm">{errorMessage}</p>
+                  </div>
+                )}
+
+                {/* ✅ FORM */}
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-4 sm:space-y-5"
+                >
+                  {/* Full Name Input */}
                   <input
                     type="text"
+                    name="fullName"
                     placeholder="Full Name"
+                    value={formData.fullName}
+                    onChange={handleInputChange}
+                    required
                     className="w-full px-4 sm:px-5 py-3 sm:py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1376F8]/20 focus:border-[#1376F8]/50 text-sm sm:text-base"
                   />
+
+                  {/* Phone Number Input */}
                   <input
                     type="tel"
+                    name="phoneNumber"
                     placeholder="Phone Number"
+                    value={formData.phoneNumber}
+                    onChange={handleInputChange}
+                    required
                     className="w-full px-4 sm:px-5 py-3 sm:py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1376F8]/20 focus:border-[#1376F8]/50 text-sm sm:text-base"
                   />
+
+                  {/* Email Input */}
                   <input
                     type="email"
+                    name="emailAddress"
                     placeholder="Email Address"
+                    value={formData.emailAddress}
+                    onChange={handleInputChange}
+                    required
                     className="w-full px-4 sm:px-5 py-3 sm:py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1376F8]/20 focus:border-[#1376F8]/50 text-sm sm:text-base"
                   />
+
+                  {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full bg-[#1376F8] text-white py-3 sm:py-4 rounded-lg font-medium text-sm sm:text-base lg:text-lg hover:bg-blue-700 transition-all duration-300"
+                    disabled={loading}
+                    className="w-full bg-[#1376F8] text-white py-3 sm:py-4 rounded-lg font-medium text-sm sm:text-base lg:text-lg hover:bg-blue-700 transition-all duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed"
                   >
-                    Submit
+                    {loading ? "Submitting..." : "Submit"}
                   </button>
                 </form>
               </div>
@@ -222,7 +333,6 @@ const Services = () => {
       </section>
 
       <Hero5 />
-      {/* Meet Our Specialists */}
       <Hero6 />
 
       {/* FAQ Section - RESPONSIVE */}

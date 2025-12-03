@@ -11,6 +11,7 @@ import Hero9 from "../sections/Hero9.jsx";
 import Hero10 from "../sections/Hero10.jsx";
 import Hero11 from "../sections/Hero11.jsx";
 import Hero1 from "../sections/Hero1.jsx";
+//import AppointmentForm from "../sections/AppointmentForm.jsx";
 
 const Home = () => {
   return (
@@ -24,6 +25,7 @@ const Home = () => {
       <Hero6 />
       <Hero7 />
       <Hero8 />
+      {/* <AppointmentForm /> */}
       <Hero9 />
       <Hero10 />
       <Hero11 />

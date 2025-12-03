@@ -1,10 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
 import contactimg1 from "../../assets/contact/contactimg1.png";
 import contactimg2 from "../../assets/contact/contactimg2.png";
 import contactimg3 from "../../assets/contact/contactimg3.png";
 import contactimg4 from "../../assets/contact/contactimg4.png";
 import Hero10 from "../sections/Hero10";
+import { contactAPI } from "../../services/api";
+
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    setSuccess(false);
+
+    try {
+      const contactData = {
+        name: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
+      };
+
+      await contactAPI.create(contactData);
+      setSuccess(true);
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+
+      setTimeout(() => setSuccess(false), 5000);
+    } catch (err) {
+      setError(err.message || "Failed to submit form. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <h1 className="mt-[70px] sm:mt-[90px] text-[32px] sm:text-[42px] md:text-[54px] lg:text-[62px] font-semibold text-[#011632] leading-[120%] tracking-[-0.02em] text-center capitalize px-4">
@@ -118,7 +173,18 @@ const Contact = () => {
 
             {/* Right Side - Contact Form */}
             <div className="w-full max-w-[589px] bg-white rounded-[10px] border border-gray-200 p-4 sm:p-6 lg:p-8">
-              <form className="space-y-4 sm:space-y-6">
+              {success && (
+                <div className="mb-4 p-4 bg-green-100 text-green-700 rounded-[10px]">
+                  Thank you! Your message has been sent successfully.
+                </div>
+              )}
+              {error && (
+                <div className="mb-4 p-4 bg-red-100 text-red-700 rounded-[10px]">
+                  {error}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 {/* First Name & Last Name */}
                 <div className="flex flex-col sm:flex-row gap-4">
                   <div className="w-full sm:w-[232px]">
@@ -127,7 +193,11 @@ const Contact = () => {
                     </label>
                     <input
                       type="text"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
                       placeholder="First name"
+                      required
                       className="w-full h-[50px] sm:h-[55px] rounded-[10px] border border-gray-300 px-4 py-3 text-[14px] sm:text-[16px] text-[#3C4959] focus:outline-none focus:ring-2 focus:ring-[#25B4F8] focus:border-transparent"
                     />
                   </div>
@@ -137,7 +207,11 @@ const Contact = () => {
                     </label>
                     <input
                       type="text"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
                       placeholder="Last name"
+                      required
                       className="w-full h-[50px] sm:h-[55px] rounded-[10px] border border-gray-300 px-4 py-3 text-[14px] sm:text-[16px] text-[#3C4959] focus:outline-none focus:ring-2 focus:ring-[#25B4F8] focus:border-transparent"
                     />
                   </div>
@@ -150,7 +224,11 @@ const Contact = () => {
                   </label>
                   <input
                     type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     placeholder="you@company.com"
+                    required
                     className="w-full h-[50px] sm:h-[55px] rounded-[10px] border border-gray-300 px-4 py-3 text-[14px] sm:text-[16px] text-[#3C4959] focus:outline-none focus:ring-2 focus:ring-[#25B4F8] focus:border-transparent"
                   />
                 </div>
@@ -160,28 +238,29 @@ const Contact = () => {
                   <label className="block text-[14px] sm:text-[16px] font-medium text-[#011632] mb-2">
                     Phone number
                   </label>
-                  <div className="flex gap-2">
-                    <select className="w-16 sm:w-20 h-[50px] sm:h-[55px] rounded-[10px] border border-gray-300 px-2 sm:px-3 py-3 text-[14px] sm:text-[16px] text-[#3C4959] focus:outline-none focus:ring-2 focus:ring-[#25B4F8] focus:border-transparent">
-                      <option>US</option>
-                      <option>UK</option>
-                      <option>PK</option>
-                    </select>
-                    <input
-                      type="tel"
-                      placeholder="+1 (555) 000-0000"
-                      className="flex-1 h-[50px] sm:h-[55px] rounded-[10px] border border-gray-300 px-4 py-3 text-[14px] sm:text-[16px] text-[#3C4959] focus:outline-none focus:ring-2 focus:ring-[#25B4F8] focus:border-transparent"
-                    />
-                  </div>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="+1 (555) 000-0000"
+                    required
+                    className="w-full h-[50px] sm:h-[55px] rounded-[10px] border border-gray-300 px-4 py-3 text-[14px] sm:text-[16px] text-[#3C4959] focus:outline-none focus:ring-2 focus:ring-[#25B4F8] focus:border-transparent"
+                  />
                 </div>
 
-                {/* Select Date */}
+                {/* Subject */}
                 <div>
                   <label className="block text-[14px] sm:text-[16px] font-medium text-[#011632] mb-2">
-                    Select date
+                    Subject
                   </label>
                   <input
-                    type="date"
-                    defaultValue="2022-12-02"
+                    type="text"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    placeholder="Subject"
+                    required
                     className="w-full h-[50px] sm:h-[55px] rounded-[10px] border border-gray-300 px-4 py-3 text-[14px] sm:text-[16px] text-[#3C4959] focus:outline-none focus:ring-2 focus:ring-[#25B4F8] focus:border-transparent"
                   />
                 </div>
@@ -193,7 +272,11 @@ const Contact = () => {
                   </label>
                   <textarea
                     rows="4"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     placeholder="Your message..."
+                    required
                     className="w-full rounded-[10px] border border-gray-300 px-4 py-3 text-[14px] sm:text-[16px] text-[#3C4959] focus:outline-none focus:ring-2 focus:ring-[#25B4F8] focus:border-transparent resize-none h-[150px] sm:h-[200px]"
                   ></textarea>
                 </div>
@@ -202,9 +285,10 @@ const Contact = () => {
                 <div className="flex justify-center pt-2">
                   <button
                     type="submit"
-                    className="w-full sm:w-[227px] h-[50px] sm:h-[55px] bg-[#1376F8] text-white font-semibold text-[14px] sm:text-[16px] rounded-[10px] hover:bg-[#0EA5E9] transition-colors px-[30px] py-[15px] gap-[10px]"
+                    disabled={loading}
+                    className="w-full sm:w-[227px] h-[50px] sm:h-[55px] bg-[#1376F8] text-white font-semibold text-[14px] sm:text-[16px] rounded-[10px] hover:bg-[#0EA5E9] transition-colors px-[30px] py-[15px] gap-[10px] disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Book an appointment
+                    {loading ? "Sending..." : "Send Message"}
                   </button>
                 </div>
               </form>
