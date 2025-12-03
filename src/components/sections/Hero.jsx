@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import heroImage from "../../assets/Mask group.png";
 import callicon from "../../assets/Bold/Calling.png";
 import mainimage1 from "../../assets/mainimage1.png";
 import mainimage2 from "../../assets/mainimage2.png";
 import oldman from "../../assets/oldman.png";
+import AppointmentModal from "./AppointmentModal";
 
 const Hero = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <section className="bg-white w-full min-h-screen pt-20 sm:pt-24 md:pt-28 lg:pt-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12 lg:py-16">
@@ -30,12 +32,12 @@ const Hero = () => {
             {/* Buttons */}
             <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
               {/* Book an appointment button */}
-              <a
-                href="#book"
+              <button
+                onClick={() => setIsModalOpen(true)}
                 className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-3 rounded-lg sm:rounded-[10px] bg-[#1376F8] text-white shadow hover:bg-sky-700 transition-colors font-medium text-sm sm:text-base w-full sm:w-auto"
               >
                 Book an appointment
-              </a>
+              </button>
 
               {/* Dental 24H Emergency Button */}
               <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-3 rounded-lg sm:rounded-[10px] w-full sm:w-auto">
@@ -123,6 +125,9 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
+      {/* Appointment Modal */}
+      <AppointmentModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
     </section>
   );
 };

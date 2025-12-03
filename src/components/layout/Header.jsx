@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import logo from "../../assets/Group 1.png";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -16,7 +26,11 @@ export default function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center py-2 sm:py-3 lg:py-4 px-2 sm:px-4 lg:px-8">
-      <div className="w-[95%] sm:w-[90%] lg:w-full lg:max-w-[1280px] h-auto sm:h-[70px] lg:h-[80px] bg-[#E6F6FE] rounded-[10px] shadow-sm px-3 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div
+        className={`w-[95%] sm:w-[90%] lg:w-full lg:max-w-[1280px] h-auto sm:h-[70px] lg:h-[80px] rounded-[10px] shadow-sm px-3 sm:px-6 lg:px-8 flex items-center justify-between transition-colors duration-300 ${
+          isScrolled ? "bg-white" : "bg-[#E6F6FE]"
+        }`}
+      >
         {/* ---------- LOGO ---------- */}
         <Link to="/" className="flex-shrink-0">
           <img src={logo} alt="Logo" className="h-7 sm:h-9 lg:h-10 w-auto" />
@@ -36,7 +50,7 @@ export default function Header() {
         </nav>
 
         {/* ---------- DESKTOP  ---------- */}
-        <div className="hidden lg:flex items-center gap-2 lg:gap-4">
+        {/* <div className="hidden lg:flex items-center gap-2 lg:gap-4">
           <Link
             to="/login"
             className="text-sm lg:text-base font-medium text-gray-700 hover:text-[#1376F8] transition-colors px-2 py-1"
@@ -49,10 +63,10 @@ export default function Header() {
           >
             Sign up
           </Link>
-        </div>
+        </div> */}
 
         {/* ---------- TABLET CTA ---------- */}
-        <div className="hidden md:flex lg:hidden items-center gap-2">
+        {/* <div className="hidden md:flex lg:hidden items-center gap-2">
           <Link
             to="/login"
             className="text-sm font-medium text-gray-700 hover:text-[#1376F8] transition-colors px-2 py-1"
@@ -65,7 +79,7 @@ export default function Header() {
           >
             Sign up
           </Link>
-        </div>
+        </div> */}
 
         {/* ---------- MOBILE MENU TOGGLE ---------- */}
         <button
@@ -98,7 +112,7 @@ export default function Header() {
               ))}
             </nav>
 
-            <div className="md:hidden mt-6 sm:mt-8 flex flex-col gap-2 sm:gap-3">
+            {/* <div className="md:hidden mt-6 sm:mt-8 flex flex-col gap-2 sm:gap-3">
               <Link
                 to="/login"
                 className="w-full text-center border-2 border-[#1376F8] text-[#1376F8] py-2 sm:py-3 rounded-lg font-medium text-sm sm:text-base hover:bg-[#1376F8] hover:text-white transition-colors"
@@ -113,7 +127,7 @@ export default function Header() {
               >
                 Sign up
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       )}
